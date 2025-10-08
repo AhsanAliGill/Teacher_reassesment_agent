@@ -1,0 +1,13 @@
+fastapi>=0.68.0
+uvicorn[standard]>=0.15.0
+python-dotenv>=0.19.0
+python-multipart>=0.0.5
+langchain-google-genai>=0.1.0
+langchain-community>=0.0.10
+python-magic-bin>=0.4.14; sys_platform == 'win32'
+python-magic>=0.4.24; sys_platform != 'win32'
+pypdf>=3.0.0
+python-pptx>=0.6.21  # For PPTX files
+openpyxl>=3.0.10     # For XLSX files
+docx2python>=2.0.0   # For DOCX files
+pinecone>=7.3.0,<8.0.0

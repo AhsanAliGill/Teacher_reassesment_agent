@@ -2,7 +2,8 @@ from fastapi import APIRouter, UploadFile, File, Form, HTTPException, Depends
 from typing import List, Optional
 from ..controllers import slide_controller
 from ..schemas.slide import Slide, SlideCreate, SlideInDB
-
+from src.app.utils.dependencies import get_current_user
+from src.app.models.user import User
 router = APIRouter(
     prefix="/slides",
     tags=["slides"],
@@ -11,6 +12,7 @@ router = APIRouter(
 
 @router.post("/", response_model=List[SlideInDB])
 async def upload_slide(
+    current_user: User = Depends(get_current_user),
     file: UploadFile = File(...),
     slide_name: str = Form(...),
     course_name: str = Form(...),

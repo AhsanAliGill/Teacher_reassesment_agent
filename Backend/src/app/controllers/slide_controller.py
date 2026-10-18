@@ -117,10 +117,14 @@ async def upload_slide(slide_data: SlideCreate, file: UploadFile) -> List[SlideI
         
         # Initialize embeddings with explicit model and dimension
         try:
+            google_api_key = os.getenv("GOOGLE_API_KEY")
+            if not google_api_key:
+                raise ValueError("GOOGLE_API_KEY environment variable not set")
+                
             doc_embeddings = GoogleGenerativeAIEmbeddings(
                 model="models/text-embedding-004",
                 task_type="retrieval_document",  # Use retrieval_document for document embeddings
-                google_api_key=os.getenv("GOOGLE_API_KEY")
+                google_api_key=google_api_key
             )
             
             # Verify the embedding dimension
